@@ -5,6 +5,6 @@
     "@graphorigami/origami": "github:GraphOrigami/origami#070555cb"
   },
   "scripts": {
-    "serve": "ori serve"
+    "start": "ori serve"
   }
 }
