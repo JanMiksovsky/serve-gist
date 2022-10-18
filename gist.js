@@ -1,8 +1,4 @@
-import {
-  ExplorableGraph,
-  graphVirtual,
-  MapValuesGraph,
-} from "@graphorigami/origami";
+import { graphVirtual, MapValuesGraph } from "@graphorigami/origami";
 import fetch from "node-fetch";
 
 export default async function gist(gistId) {
@@ -19,7 +15,6 @@ export default async function gist(gistId) {
     // Top-level `files` has the actual file content in `content` properties.
     const graph = new MapValuesGraph(files, (file) => file.get("content"));
     const meta = await graphVirtual.call(this, graph);
-    const plain = await ExplorableGraph.plain(meta);
     return meta;
   } else {
     return undefined;
