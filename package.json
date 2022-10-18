@@ -1,0 +1,10 @@
+{
+  "name": "serve-gist",
+  "type": "module",
+  "dependencies": {
+    "@graphorigami/origami": "github:GraphOrigami/origami#070555cb"
+  },
+  "scripts": {
+    "serve": "ori serve"
+  }
+}
