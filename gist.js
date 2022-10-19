@@ -1,9 +1,19 @@
 import { graphVirtual, MapValuesGraph } from "@graphorigami/origami";
-import fetch from "node-fetch";
+import * as dotenv from "dotenv";
+import { default as fetch, Headers } from "node-fetch";
+
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+const token = process.env.GITHUB_TOKEN;
 
 export default async function gist(gistId) {
   const gistUrl = `https://api.github.com/gists/${gistId}`;
-  const response = await fetch(gistUrl);
+  const headers = new Headers({
+    Accept: "application/vnd.github.v3+json",
+    Authorization: `Bearer ${token}`,
+  });
+  const response = await fetch(gistUrl, { headers });
   if (response.ok) {
     let json;
     try {
