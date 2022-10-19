@@ -3,9 +3,10 @@ import * as dotenv from "dotenv";
 import { default as fetch, Headers } from "node-fetch";
 
 if (process.env.NODE_ENV !== "production") {
+  // When developing, load environment variables from local .env file.
   dotenv.config();
 }
-const token = process.env.GITHUB_TOKEN;
+const token = process.env.GITHUB_API_TOKEN;
 
 export default async function gist(gistId) {
   const gistUrl = `https://api.github.com/gists/${gistId}`;
@@ -15,13 +16,7 @@ export default async function gist(gistId) {
   });
   const response = await fetch(gistUrl, { headers });
   if (response.ok) {
-    let json;
-    try {
-      json = await response.json();
-    } catch (error) {
-      throw error;
-    }
-    const { files } = json;
+    const { files } = await response.json();
     // Top-level `files` has the actual file content in `content` properties.
     const graph = new MapValuesGraph(files, (file) => file.get("content"));
     const meta = await graphVirtual.call(this, graph);
