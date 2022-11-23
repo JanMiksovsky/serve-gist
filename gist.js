@@ -9,6 +9,10 @@ if (process.env.NODE_ENV !== "production") {
 const token = process.env.GITHUB_API_TOKEN;
 
 export default async function gist(gistId) {
+  const gistIdRegex = /[a-f0-9]{32}/;
+  if (!gistIdRegex.test(gistId)) {
+    return undefined;
+  }
   const gistUrl = `https://api.github.com/gists/${gistId}`;
   const headers = new Headers({
     Accept: "application/vnd.github.v3+json",
