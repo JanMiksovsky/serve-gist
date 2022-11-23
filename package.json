@@ -2,7 +2,7 @@
   "name": "serve-gist",
   "type": "module",
   "dependencies": {
-    "@graphorigami/origami": "github:GraphOrigami/origami#070555cb",
+    "@graphorigami/origami": "github:GraphOrigami/origami#da75fb1c",
     "dotenv": "16.0.3"
   },
   "scripts": {
